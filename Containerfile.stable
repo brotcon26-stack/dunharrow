@@ -16,3 +16,19 @@ RUN dnf install -y \
 # Add caddy cert to trusted certs for HTTPS
 COPY root.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust
+
+#Setting up users
+
+RUN useradd -m -G wheel brotcon26 \
+    && passwd -l brotcon26 \
+    && mkdir -p /home/brotcon26/.ssh \
+    && chmod 700 /home/brotcon26/.ssh
+
+#No password sudo -> using ssh key auth only
+RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' \
+      > /etc/sudoers.d/wheel-nopasswd
+
+COPY ssh_pubkeys /home/brotcon26/.ssh/authorized_keys
+
+#TO_DO: Still need to make sure ssh stuff is finished, key only
+#And add user for cockpit (currently can't because key only)
