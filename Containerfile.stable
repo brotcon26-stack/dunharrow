@@ -10,7 +10,7 @@ RUN dnf install -y \
     cockpit \
     cockpit-podman \
     cockpit-selinux \
-    && dnf clean all    
+    && dnf clean all \
     && systemctl enable --now cockpit.socket
     
 # Add caddy cert to trusted certs for HTTPS
