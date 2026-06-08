@@ -30,5 +30,7 @@ RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' \
 
 COPY ssh_pubkeys /home/brotcon26/.ssh/authorized_keys
 
+# Add cockpit user
+RUN useradd -m eomer
 #TO_DO: Still need to make sure ssh stuff is finished, key only
 #And add user for cockpit (currently can't because key only)
