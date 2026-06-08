@@ -1,9 +1,18 @@
 FROM quay.io/fedora/fedora-bootc:44
 
-#Container tooling
-RUN dnf install -y \
-    podman \
-
 #General Dev tooling
 RUN dnf install -y \
-    git
+    git \
+    && dnf clean all
+
+#Installing and starting cockpit ui
+RUN dnf install -y \
+    cockpit \
+    cockpit-podman \
+    cockpit-selinux \
+    && dnf clean all    
+    && systemctl enable --now cockpit.socket
+    
+# Add caddy cert to trusted certs for HTTPS
+COPY root.crt /etc/pki/ca-trust/source/anchors/
+RUN update-ca-trust
