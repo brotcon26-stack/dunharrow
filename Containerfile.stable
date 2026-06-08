@@ -1,0 +1,9 @@
+FROM quay.io/fedora/fedora-bootc:44
+
+#Container tooling
+RUN dnf install -y \
+    podman \
+
+#General Dev tooling
+RUN dnf install -y \
+    git
