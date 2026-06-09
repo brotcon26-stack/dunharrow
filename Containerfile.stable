@@ -1,4 +1,5 @@
-FROM quay.io/fedora/fedora-bootc:44
+ARG BASE_IMAGE=quay.io/fedora/fedora-bootc:44
+FROM ${BASE_IMAGE}
 
 #Update base image
 RUN dnf update && dnf clean all
