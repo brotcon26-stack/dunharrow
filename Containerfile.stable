@@ -32,7 +32,7 @@ RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' \
 COPY --chown=brotcon26:brotcon26 --chmod=600 \ 
     ssh_pubkeys /home/brotcon26/.ssh/authorized_keys
 
-COPY ssh_key_only /etc/ssh/ssh_config.d/nopasswd.conf
+COPY ssh_key_only /etc/ssh/sshd_config.d/nopasswd.conf
 
 # Add cockpit user
 RUN useradd -m -G wheel eomer && echo 'eomer:password' | chpasswd
