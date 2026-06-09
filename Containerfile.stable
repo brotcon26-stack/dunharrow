@@ -1,8 +1,13 @@
 FROM quay.io/fedora/fedora-bootc:44
 
-#General Dev tooling
+#Update base image
+RUN dnf update && dnf clean all
+
+#General Packages
 RUN dnf install -y \
     git \
+    fastfetch \
+    skopeo \
     && dnf clean all
 
 #Installing and starting cockpit ui
@@ -22,6 +27,7 @@ RUN update-ca-trust
 RUN useradd -m -G wheel brotcon26 \
     && passwd -l brotcon26 \
     && mkdir -p /home/brotcon26/.ssh \
+    && chown brotcon26:brotcon26 /home/brotcon26/.ssh \
     && chmod 700 /home/brotcon26/.ssh
 
 #No password sudo -> using ssh key auth only
