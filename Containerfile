@@ -43,5 +43,3 @@ COPY ssh_key_only /etc/ssh/sshd_config.d/nopasswd.conf
 
 # Add cockpit user
 RUN useradd -m -G wheel eomer && echo 'eomer:password' | chpasswd
-#TO_DO: Still need to make sure ssh stuff is finished, key only
-#And add user for cockpit (currently can't because key only)
