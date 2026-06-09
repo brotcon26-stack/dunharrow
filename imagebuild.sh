@@ -9,4 +9,4 @@ sudo podman run \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --type qcow2 \
     --rootfs btrfs \
-    registry.lab/dunharrow:testing
+    registry.lab/dunharrow:stable
