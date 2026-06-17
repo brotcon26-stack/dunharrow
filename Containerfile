@@ -9,6 +9,7 @@ RUN dnf install -y \
     git \
     fastfetch \
     skopeo \
+    distrobox \
     && dnf clean all
 
 #Installing and starting cockpit ui
