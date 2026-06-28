@@ -10,16 +10,18 @@ RUN dnf install -y \
     fastfetch \
     skopeo \
     distrobox \
+    osbuild-composer \
+    composer-cli \
     && dnf clean all
-
+    
 #Installing and starting cockpit ui
 RUN dnf install -y \
     cockpit \
     cockpit-podman \
     cockpit-selinux \
+    cockpit-image-builder \
     && dnf clean all \
-    && systemctl enable cockpit.socket
-    
+    && systemctl enable cockpit.socket osbuild-composer.socket
 # Add caddy cert to trusted certs for HTTPS
 COPY root.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust
