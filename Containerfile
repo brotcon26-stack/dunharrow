@@ -13,7 +13,7 @@ RUN dnf install -y \
     osbuild-composer \
     composer-cli \
     && dnf clean all
-    
+
 #Installing and starting cockpit ui
 RUN dnf install -y \
     cockpit \
@@ -33,7 +33,7 @@ RUN useradd -m -G wheel brotcon26 \
     && mkdir -p /home/brotcon26/.ssh \
     && chown brotcon26:brotcon26 /home/brotcon26/.ssh \
     && chmod 700 /home/brotcon26/.ssh
-    && loginctl enable-linger brotcon26
+    #&& loginctl enable-linger brotcon26
     
 #No password sudo -> using ssh key auth only
 RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' \
