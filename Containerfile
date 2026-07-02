@@ -8,6 +8,7 @@ RUN dnf install -y \
     git \
     fastfetch \
     skopeo \
+    just \
     distrobox \
     osbuild-composer \
     composer-cli \
