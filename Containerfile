@@ -1,8 +1,7 @@
-ARG BASE_IMAGE=quay.io/fedora/fedora-bootc:44
+ARG BASE_IMAGE=registry.lab/bases:fedora
 FROM ${BASE_IMAGE}
 
-#Update base image
-RUN dnf update && dnf clean all
+
 
 #General Packages
 RUN dnf install -y \
@@ -22,9 +21,6 @@ RUN dnf install -y \
     cockpit-image-builder \
     && dnf clean all \
     && systemctl enable cockpit.socket osbuild-composer.socket
-# Add caddy cert to trusted certs for HTTPS
-COPY root.crt /etc/pki/ca-trust/source/anchors/
-RUN update-ca-trust
 
 #Setting up users
 
